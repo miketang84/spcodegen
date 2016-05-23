@@ -29,5 +29,5 @@ time = "0.1.34"
 
 
 [dependencies.rustorm]
-git = "https://github.com/daogangtang/sporm.git"
+git = "https://github.com/sappworks/sporm.git"
 
