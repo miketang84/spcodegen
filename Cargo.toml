@@ -1,7 +1,10 @@
 [package]
 name = "spcodegen"
 version = "0.1.0"
-authors = [ "Jovansonlee Cesar <ivanceras@gmail.com>" ]
+authors = [ 
+    "Jovansonlee Cesar <ivanceras@gmail.com>",
+    "Mike Tang <miketang84@outlook.com>" 
+]
 license = "MIT"
 description = "A model code generator from database table using rustorm ORM"
 readme = "README.md"
