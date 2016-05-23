@@ -1,0 +1,30 @@
+[package]
+name = "spcodegen"
+version = "0.1.0"
+authors = [ "Jovansonlee Cesar <ivanceras@gmail.com>" ]
+license = "MIT"
+description = "A model code generator from database table using rustorm ORM"
+readme = "README.md"
+repository = "https://github.com/ivanceras/codegenta"
+documentation = "https://ivanceras.github.io/codegenta/codegenta/"
+keywords = ["orm", "codegen", "generator", "database"]
+
+[lib]
+name = "codegenta"
+
+
+
+
+[dependencies.chrono]
+version = "0.2.14"
+features = ["rustc-serialize"]
+
+[dependencies]
+rustc-serialize = "0.3.16"
+uuid = "0.1.18"
+time = "0.1.34"
+
+
+[dependencies.rustorm]
+git = "https://github.com/daogangtang/sporm.git"
+
