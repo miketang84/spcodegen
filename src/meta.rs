@@ -249,7 +249,7 @@ impl StructCode for Table{
             w.append("///");
             w.ln();
         }
-        w.append("#[derive(Serialize)]");
+        w.append("#[derive(Serialize, Deserialize)]");
         w.ln();
         w.append("#[derive(Debug, Clone)]");
         w.ln();
