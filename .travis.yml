@@ -6,8 +6,8 @@ rust:
 addons:
   postgresql: 9.4
 before_script:
-- "git clone https://github.com/ivanceras/rustorm ../rustorm"
-- "cd ../rustorm && ./scripts/setup.sh"
+- "git clone https://github.com/sappworks/sporm ../sporm"
+- "cd ../sporm && ./scripts/setup.sh"
 
 
 after_success: |

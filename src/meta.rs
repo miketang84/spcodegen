@@ -35,7 +35,7 @@ impl MetaCode for Foreign{
         w.ln();
         w.tabs(6);
         w.append("}");
-        (vec!["rustorm::table::Foreign".to_owned()], w.src)
+        (vec!["sporm::table::Foreign".to_owned()], w.src)
 
     }
 
@@ -78,8 +78,8 @@ impl MetaCode for Column{
             &Some(ref operand) => match operand{
                 &Operand::Value(ref value) => {
                     w.append(&format!("Some(Operand::Value(Value::String(\"{}\".to_owned()))),",value));
-                    imports.push("rustorm::dao::Value".to_owned());
-                    imports.push("rustorm::query::Operand".to_owned());
+                    imports.push("sporm::dao::Value".to_owned());
+                    imports.push("sporm::query::Operand".to_owned());
                 },
                 _ => panic!("not processing other operands: {:?}", self.default),
             },
@@ -249,7 +249,7 @@ impl StructCode for Table{
             w.append("///");
             w.ln();
         }
-        w.append("#[derive(RustcEncodable)]");
+        w.append("#[derive(Serialize)]");
         w.ln();
         w.append("#[derive(Debug, Clone)]");
         w.ln();

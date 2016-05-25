@@ -315,8 +315,8 @@ fn generate_mod_rs(config: &Config, all_tables: &Vec<Table>) {
     w.appendln("pub mod table;");
     w.appendln("pub mod column;");
     w.ln();
-    w.appendln("use rustorm::table::Table;");
-    w.appendln("use rustorm::table::IsTable;");
+    w.appendln("use sporm::table::Table;");
+    w.appendln("use sporm::table::IsTable;");
     for table in all_tables {
         let table_mod = format!("use {};", config.table_module(table));
         w.appendln(&table_mod);
@@ -333,10 +333,10 @@ fn generate_mod_rs(config: &Config, all_tables: &Vec<Table>) {
 fn generate_meta_code(table: &Table) -> (Vec<String>, String) {
     let mut w = Writer::new();
     let mut imports = Vec::new();
-    imports.push("rustorm::table::IsTable".to_owned());
-    imports.push("rustorm::table::Column".to_owned());
-    imports.push("rustorm::table::Table".to_owned());
-    imports.push("rustorm::dao::Type".to_owned());
+    imports.push("sporm::table::IsTable".to_owned());
+    imports.push("sporm::table::Column".to_owned());
+    imports.push("sporm::table::Table".to_owned());
+    imports.push("sporm::dao::Type".to_owned());
 
     w.append("impl IsTable for ");
     w.append(&table.struct_name());
@@ -361,9 +361,9 @@ fn generate_meta_code(table: &Table) -> (Vec<String>, String) {
 fn generate_impl_default_code(config: &Config, table: &Table, all_tables: &Vec<Table>) -> (Vec<String>, String) {
     let mut w = Writer::new();
     let mut imports = Vec::new();
-    imports.push("rustorm::table::IsTable".to_owned());
-    imports.push("rustorm::table::Column".to_owned());
-    imports.push("rustorm::table::Table".to_owned());
+    imports.push("sporm::table::IsTable".to_owned());
+    imports.push("sporm::table::Column".to_owned());
+    imports.push("sporm::table::Table".to_owned());
 
     w.append("impl Default for ");
     w.append(&table.struct_name());
@@ -407,8 +407,8 @@ fn generate_impl_default_code(config: &Config, table: &Table, all_tables: &Vec<T
 fn generate_to_json_code(table: &Table) -> (Vec<String>, String) {
     let mut w = Writer::new();
     let mut imports = Vec::new();
-    imports.push("rustc_serialize::json::ToJson".to_owned());
-    imports.push("rustc_serialize::json::Json".to_owned());
+    imports.push("serde_json::value::ToJson".to_owned());
+    imports.push("serde_json::Value as Json".to_owned());
 
     w.append("impl ToJson for ");
     w.append(&table.struct_name());
@@ -456,8 +456,8 @@ fn generate_dao_conversion_code(config: &Config,
                                 -> (Vec<String>, String) {
     let mut w = Writer::new();
     let mut imports = Vec::new();
-    imports.push("rustorm::dao::Dao".to_owned());
-    imports.push("rustorm::dao::IsDao".to_owned());
+    imports.push("sporm::dao::Dao".to_owned());
+    imports.push("sporm::dao::IsDao".to_owned());
     imports.push(format!("{}::schema", config.base_module.as_ref().unwrap()));
     imports.push(format!("{}::table", config.base_module.as_ref().unwrap()));
     imports.push(format!("{}::column", config.base_module.as_ref().unwrap()));
