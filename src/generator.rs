@@ -1,12 +1,12 @@
 use writer::Writer;
-use rustorm::database::DatabaseDev;
+use sporm::database::DatabaseDev;
 use std::fs::File;
 use std::fs;
 use std::io::Write;
 
-use rustorm::table::Table;
+use sporm::table::Table;
 use meta::{MetaCode, StructCode};
-use rustorm::dao::Type;
+use sporm::dao::Type;
 
 
 
@@ -53,13 +53,13 @@ impl Config{
         let base_module = self.base_module.clone();
         match base_module {
             Some(base_module) => match schema{
-				&Some(ref schema) => format!("{}/{}/{}", self.base_dir, base_module, schema),
-				&None =>  format!("{}/{}", self.base_dir, base_module), 
-			},
+                &Some(ref schema) => format!("{}/{}/{}", self.base_dir, base_module, schema),
+                &None =>  format!("{}/{}", self.base_dir, base_module), 
+            },
             None => match schema{
-				&Some(ref schema) => format!("{}/{}", self.base_dir, schema),
-				&None => format!("{}",self.base_dir),
-			}
+                &Some(ref schema) => format!("{}/{}", self.base_dir, schema),
+                &None => format!("{}",self.base_dir),
+            }
         }
     }
     fn module_base_dir(&self) -> String {
@@ -73,13 +73,13 @@ impl Config{
     fn module(&self, schema: &Option<String>) -> String {
         match &self.base_module {
             &Some(ref base_module) => match schema{
-				&Some(ref schema) => format!("{}::{}", base_module, schema),
-				&None => format!("{}",base_module)
-			},
+                &Some(ref schema) => format!("{}::{}", base_module, schema),
+                &None => format!("{}",base_module)
+            },
             &None => match schema{
-				&Some(ref schema) => format!("{}", schema),
-				&None => "".to_owned()
-			}
+                &Some(ref schema) => format!("{}", schema),
+                &None => "".to_owned()
+            }
         }
     }
 
@@ -104,14 +104,14 @@ pub fn get_all_tables(db_dev: &DatabaseDev) -> Vec<Table> {
 pub fn get_schemas(all_table: &Vec<Table>) -> Vec<String> {
     let mut schema_names = Vec::new();
     for t in all_table {
-		match &t.schema{
-			&Some(ref tschema) => {
-				if !schema_names.contains(tschema) {
-					schema_names.push(tschema.to_owned());
-				}
-			},
-			&None => ()
-		}
+        match &t.schema{
+            &Some(ref tschema) => {
+                if !schema_names.contains(tschema) {
+                    schema_names.push(tschema.to_owned());
+                }
+            },
+            &None => ()
+        }
     }
     schema_names.sort_by(|a, b| a.cmp(b));
     schema_names
@@ -121,12 +121,12 @@ pub fn get_schemas(all_table: &Vec<Table>) -> Vec<String> {
 pub fn get_tables_in_schema<'a>(schema: &str, all_table: &'a Vec<Table>) -> Vec<&'a Table> {
     let mut tables = Vec::new();
     for t in all_table {
-		match &t.schema{
-			&Some(ref tschema) => if tschema == schema {
-            	tables.push(t);//cloned the table here
-        	},
-			&None => {}
-		}
+        match &t.schema{
+            &Some(ref tschema) => if tschema == schema {
+                tables.push(t);//cloned the table here
+            },
+            &None => {}
+        }
     }
     tables.sort_by(|a, b| a.name.cmp(&b.name));
     tables
