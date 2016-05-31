@@ -20,13 +20,13 @@ name = "spcodegen"
 version = "0.2"
 features = ["serde"]
 
-[dependencies.serde_json]
+#[dependencies.serde_json]
 #git = "https://github.com/serde-rs/json.git"
-version = "*"
+#version = "*"
 
 [dependencies]
 serde = "0.7"
-#serde_macros = "0.7"
+serde_json = "0.7"
 uuid = { version = "0.2", features = ["serde", "v4"] }
 time = "0.1"
 
