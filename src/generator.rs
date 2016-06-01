@@ -171,7 +171,7 @@ fn generate_table(db_dev: &DatabaseDev, config: &Config, table: &Table, all_tabl
     let (mut dao_imports, dao_src) = generate_dao_conversion_code(config, table, all_tables);
     let (mut default_imports, default_src) = generate_impl_default_code(config, table, all_tables);
     let (mut meta_imports, meta_src) = generate_meta_code(table);
-    let (mut json_imports, json_src) = generate_to_json_code(table);
+    //let (mut json_imports, json_src) = generate_to_json_code(table);
     let static_columns = generate_static_column_names(table);
     let warning = format!(" WARNING: This file is generated, derived from table {}, DO NOT EDIT",
                           table.complete_name());
@@ -183,7 +183,7 @@ fn generate_table(db_dev: &DatabaseDev, config: &Config, table: &Table, all_tabl
     all_imports.append(&mut default_imports);
     all_imports.append(&mut meta_imports);
     all_imports.append(&mut meta_imports);
-    all_imports.append(&mut json_imports);
+    //all_imports.append(&mut json_imports);
     all_imports.sort();
     all_imports.dedup();
     
@@ -202,8 +202,8 @@ fn generate_table(db_dev: &DatabaseDev, config: &Config, table: &Table, all_tabl
     w.ln();
     w.appendln(&dao_src);
     w.ln();
-    w.appendln(&json_src);
-    w.ln();
+    //w.appendln(&json_src);
+    //w.ln();
     w.appendln(&default_src);
     w.ln();
     
